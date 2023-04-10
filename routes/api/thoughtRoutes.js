@@ -32,3 +32,5 @@ router.route('/:thoughtId/reactions')
     .post(addReaction)
 
 //route and controller to delete reaction
+
+module.exports = router;
