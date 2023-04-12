@@ -63,9 +63,19 @@ module.exports = {
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that ID' })
-                    : res.json((thought))
 
-                // remove thought ID from assoc user ?
+                    // Remove thought ID from associated user
+                    : User.findOneAndUpdate(
+                        { thoughts: req.params.thoughtId },
+                        { $pull: { thoughts: req.params.thoughtId } },
+                        { runValidators: true, new: true },
+                    )
+                        .then((user) =>
+                            !user
+                                ? res.status(404).json({ message: 'No user with that ID' })
+                                : res.json(user)
+                        )
+                        .catch((err) => res.status(500).json(err))
             )
             .catch((err) => res.json(err));
     },

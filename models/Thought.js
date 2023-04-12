@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
-const Reaction = require('./Reaction');
 const moment = require('moment');
+const Reaction = require('./Reaction');
 
 // Schema to create Thought model
 
@@ -27,9 +27,6 @@ const thoughtSchema = new Schema(
         reactions: [Reaction],
     },
 
-    {
-        virtuals: true,
-    }
 );
 
 thoughtSchema
