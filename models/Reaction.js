@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const reactionSchema = new mongoose.Schema(
     {
@@ -21,7 +22,7 @@ const reactionSchema = new mongoose.Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            // use get method to format timestamp on query
+            get: (createdAtVal) => moment(createdAtVal).format('MMM DD YYYY [at] hh:mm a'),
         },
     },
 
