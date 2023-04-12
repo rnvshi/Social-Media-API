@@ -19,7 +19,7 @@ module.exports = {
 
     createUser(req, res) {
         User.create(req.body)
-            .then((user) => res.json(user))
+            .then((user) => res.json({ message: `Welcome to the community, ${user.username}. Your account has been created.` }))
             .catch((err) => res.status(500).json(err));
     },
 
@@ -45,7 +45,7 @@ module.exports = {
             .then((user) =>
                 !user
                     ? res.status(404).json({ message: 'No user with that ID' })
-                    : res.json(user)
+                    : res.json({ message: `We are sorry to see you go, ${user.username}. Your account has been deleted.` })
             )
             .catch((err) => res.status(500).json(err));
     },
@@ -68,7 +68,7 @@ module.exports = {
                         .then((user2) =>
                             !user2
                                 ? res.status(404).json({ message: 'No user with that ID' })
-                                : res.json(user1)
+                                : res.json({ message: `${user1.username} and ${user2.username} are now friends.` })
                         )
                         .catch((err) => res.status(500).json(err))
             )
@@ -76,7 +76,7 @@ module.exports = {
     },
 
     deleteFriend(req, res) {
-        User.findOneAndRemove(
+        User.findOneAndUpdate(
             { _id: req.params.userId },
             { $pull: { friends: req.params.friendId } },
             { runValidators: true, new: true },
@@ -84,7 +84,7 @@ module.exports = {
             .then((user1) =>
                 !user1
                     ? res.status(404).json({ message: 'No user with that ID' })
-                    : User.findOneAndRemove(
+                    : User.findOneAndUpdate(
                         { _id: req.params.friendId },
                         { $pull: { friends: req.params.userId } },
                         { runValidators: true, new: true },
@@ -93,7 +93,7 @@ module.exports = {
                         .then((user2) =>
                             !user2
                                 ? res.status(404).json({ message: 'No user with that ID' })
-                                : res.json(user1)
+                                : res.json({ mesage: `${user1.username} and ${user2.username} are no longer friends.` })
                         )
                         .catch((err) => res.status(500).json(err))
             )
