@@ -15,7 +15,7 @@ Some packages are required to be installed in order to run this program, as well
 
 ## Usage
 
-Walkthrough video: https://watch.screencastify.com/v/TFlpg2Yz0TN2dfwbNMXN
+Walkthrough video: https://drive.google.com/file/d/19LZV_w3c2pyml-czPC0mKJx3NZZcUXaG/view
 
 ## License
 
