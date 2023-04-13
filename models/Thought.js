@@ -27,12 +27,16 @@ const thoughtSchema = new Schema(
         reactions: [Reaction],
     },
 
+    {
+        toJSON: { getters: true }
+    },
+
 );
 
 thoughtSchema
     .virtual('reactionCount')
     .get(function () {
-        return $(this.reactions.length)
+        return this.reactions.length
     })
     .set(function (reactionCount) {
         this.set({ reactionCount });
