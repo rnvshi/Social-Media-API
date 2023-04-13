@@ -19,4 +19,4 @@ Walkthrough video: https://watch.screencastify.com/v/TFlpg2Yz0TN2dfwbNMXN
 
 ## License
 
-Refer to license in repository.
+MIT License.
